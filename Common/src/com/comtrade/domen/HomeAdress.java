@@ -1,7 +1,9 @@
 package com.comtrade.domen;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class HomeAdress implements GeneralDomen {
 	private int id;
@@ -49,6 +51,11 @@ public class HomeAdress implements GeneralDomen {
 			e.printStackTrace();
 		}
 		
+	}
+	@Override
+	public List<GeneralDomen> selectAll(ResultSet resultSet) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

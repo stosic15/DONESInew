@@ -35,12 +35,11 @@ public class ClientThread extends Thread {
 	private void processTheData(TransferObject transferObject) {
 		CommandBase commadBase = null;
 		switch (transferObject.getConstantesFC()) {
-		case HOME_ADRESS:
-			
+		case HOME_ADRESS:			
 			break;
-
 		default:
 			break;
+
 		}
 		commadBase.execute(transferObject);
 		send(transferObject);
