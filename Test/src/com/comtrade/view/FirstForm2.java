@@ -22,6 +22,7 @@ import com.comtrade.domen.HomeAdress;
 import com.comtrade.domen.TransferObject;
 import com.comtrade.frontcontroller.FrontController;
 import javax.swing.JComboBox;
+import javax.swing.JLayeredPane;
 
 public class FirstForm2 extends JFrame {
 

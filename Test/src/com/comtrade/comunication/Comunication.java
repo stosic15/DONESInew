@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import com.comtrade.domen.TransferObject;
 
@@ -15,12 +14,10 @@ public class Comunication {
 	private Comunication() {
 		 try {
 			socket = new Socket ("127.0.0.1",9000);
-		} catch (UnknownHostException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
 		}
 	}
 	public static Comunication getInstance() {
@@ -30,9 +27,9 @@ public class Comunication {
 		return instance;
 	}
 	public void send(TransferObject transferObject) {
-		ObjectOutputStream objectOutputStream;
+		
 		try {
-			objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 			objectOutputStream.writeObject(transferObject);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -57,8 +57,8 @@ public class FirstForm extends JFrame {
 		JButton btnNewButton = new JButton("Login/Register");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//LoginRegister loginRegister = new LoginRegister();
-				//loginRegister.setVisible(true);
+				LoginRegisterForm loginRegister = new LoginRegisterForm();
+				loginRegister.setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(511, 34, 177, 25);
