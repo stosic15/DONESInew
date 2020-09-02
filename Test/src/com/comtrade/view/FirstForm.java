@@ -1,19 +1,10 @@
 package com.comtrade.view;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import com.comtrade.domen.ConstantesBL;
@@ -22,11 +13,30 @@ import com.comtrade.domen.HomeAdress;
 import com.comtrade.domen.TransferObject;
 import com.comtrade.frontcontroller.FrontController;
 
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+
+import java.awt.CardLayout;
+import javax.swing.JTextPane;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
+
 public class FirstForm extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField txtAdress;
-
+	private static JPanel contentPane;
+	private JComboBox comboBox;
+	private JPanel panelFirst;
+	public JPanel panelSecond;
+	private JLayeredPane layeredPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private LoginRegisterForm form2;
 	/**
 	 * Launch the application.
 	 */
@@ -35,6 +45,9 @@ public class FirstForm extends JFrame {
 			public void run() {
 				try {
 					FirstForm frame = new FirstForm();
+					LoginRegisterForm form2 = new LoginRegisterForm();
+					frame.setForm(form2);
+					form2.setForm(frame);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,48 +55,67 @@ public class FirstForm extends JFrame {
 			}
 		});
 	}
+	public void switchPanel(JPanel panel) {
+		layeredPane.removeAll();
+		layeredPane.add(panel);
+		layeredPane.repaint();
+		layeredPane.revalidate();
+	}
+	public void setTextOnTextFile1(String text)
+	{
+		textField_1.setText(text);
+	}
+	public void setForm(LoginRegisterForm f)
+	{
+		form2 = f;
+	}
 
 	/**
 	 * Create the frame.
+	 * @param panelSecond 
 	 */
 	public FirstForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 767, 429);
+		setBounds(100, 100, 770, 437);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Login/Register");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				LoginRegisterForm loginRegister = new LoginRegisterForm();
-				loginRegister.setVisible(true);
-			}
-		});
-		btnNewButton.setBounds(511, 34, 177, 25);
-		contentPane.add(btnNewButton);
+		layeredPane = new JLayeredPane();
+		layeredPane.setBounds(0, 0, 752, 377);
+		contentPane.add(layeredPane);
+		layeredPane.setLayout(new CardLayout(0, 0));
 		
-		txtAdress = new JTextField();
-		txtAdress.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				 txtAdress.setText("");
-			}
-		});
-		txtAdress.setText("Insert your adress");
-		txtAdress.setBounds(12, 265, 368, 50);
-		contentPane.add(txtAdress);
-		txtAdress.setColumns(10);
+		panelFirst = new JPanel();
+		layeredPane.add(panelFirst, "name_827587355551800");
+		panelFirst.setLayout(null);
 		
-		JButton btnOrder= new JButton("Order");
+		JTextPane txtpnOrderDeliveryIn = new JTextPane();
+		txtpnOrderDeliveryIn.setText("Order delivery \r\n\r\nin less than 1 minute!");
+		txtpnOrderDeliveryIn.setForeground(Color.BLACK);
+		txtpnOrderDeliveryIn.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txtpnOrderDeliveryIn.setBounds(22, 164, 315, 77);
+		panelFirst.add(txtpnOrderDeliveryIn);
+		
+		textField = new JTextField();
+		textField.setText("Insert your adress");
+		textField.setColumns(10);
+		textField.setBounds(22, 261, 368, 50);
+		panelFirst.add(textField);
+		
+		JButton btnOrder = new JButton("Naru\u010Dite");
 		btnOrder.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { 
-				String adress = txtAdress.getText();
-				HomeAdress homeAdress = new HomeAdress(adress);
-				TransferObject tr = TransferObject.create(txtAdress, ConstantesFC.HOME_ADRESS, ConstantesBL.POST);
+			public void actionPerformed(ActionEvent e) {
+				String adress = textField.getText();
+				HomeAdress homeAdress = new HomeAdress();
+				homeAdress.setAdress(adress);
+				TransferObject tObject = TransferObject.create(homeAdress, ConstantesFC.HOME_ADRESS, ConstantesBL.POST);
+				
 				try {
-					FrontController.getInstance().execute(tr);
+					TransferObject tr1 = FrontController.getInstance().execute(tObject);
+					String message1 = tr1.getMessage();
+					JOptionPane.showMessageDialog(null, message1);
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -93,14 +125,44 @@ public class FirstForm extends JFrame {
 				}
 			}
 		});
-		btnOrder.setBounds(379, 265, 89, 50);
-		contentPane.add(btnOrder);
+		btnOrder.setBounds(383, 261, 89, 50);
+		panelFirst.add(btnOrder);
 		
-		JTextPane txtpnOrderDeliveryIn = new JTextPane();
-		txtpnOrderDeliveryIn.setFont(new Font("Tahoma", Font.BOLD, 15));
-		txtpnOrderDeliveryIn.setForeground(Color.BLACK);
-		txtpnOrderDeliveryIn.setText("Order delivery \r\n\r\nin less than 1 minute!");
-		txtpnOrderDeliveryIn.setBounds(33, 162, 315, 77);
-		contentPane.add(txtpnOrderDeliveryIn);
+		JButton btnLoginRegister = new JButton("Prijavite se/Registruj");
+		btnLoginRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//LoginRegisterForm loginRegister = new LoginRegisterForm();
+				//loginRegister.setVisible(true);
+				form2.setVisible(true);
+			}
+		});
+		btnLoginRegister.setBounds(545, 34, 171, 25);
+		panelFirst.add(btnLoginRegister);
+		
+		panelSecond = new JPanel();
+		layeredPane.add(panelSecond, "name_827590184905600");
+		panelSecond.setLayout(null);
+		
+		JTextPane txtpnOrderDeliveryIn_1 = new JTextPane();
+		txtpnOrderDeliveryIn_1.setText("Order delivery \r\n\r\nin less than 1 minute!");
+		txtpnOrderDeliveryIn_1.setForeground(Color.BLACK);
+		txtpnOrderDeliveryIn_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txtpnOrderDeliveryIn_1.setBounds(29, 165, 315, 77);
+		panelSecond.add(txtpnOrderDeliveryIn_1);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("Insert your adress");
+		textField_1.setColumns(10);
+		textField_1.setBounds(29, 254, 368, 50);
+		panelSecond.add(textField_1);
+		
+		JButton btnOrder_1 = new JButton("Order");
+		btnOrder_1.setBounds(395, 254, 89, 50);
+		panelSecond.add(btnOrder_1);
+		
+		 comboBox = new JComboBox();
+		comboBox.setBounds(613, 31, 89, 44);
+		panelSecond.add(comboBox);
 	}
+	
 }

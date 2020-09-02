@@ -1,6 +1,7 @@
 package com.comtrade.view;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GraphicsConfiguration;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -34,12 +35,17 @@ public class LoginRegisterForm extends JFrame {
 	private JPanel contentPane;
 	private JPanel panel1;
 	private JPanel panel2;
+	//private JPanel panelFirst;
+	public JPanel panelSecond;
 	private JLayeredPane layeredPane;
 	private JTextField tfAdress;
 	private JTextField tfEmail;
 	private JTextField tfPassword;
 	private JTextField tfUserName;
 	private JPasswordField pfPassword;
+	private FirstForm form;
+	
+	
 
 	
 	
@@ -48,6 +54,10 @@ public class LoginRegisterForm extends JFrame {
 		layeredPane.add(panel);
 		layeredPane.repaint();
 		layeredPane.revalidate();
+	}
+	public void setForm(FirstForm f)
+	{
+		form = f;
 	}
 
 	/**
@@ -84,15 +94,21 @@ public class LoginRegisterForm extends JFrame {
 		
 		JButton btnNewButton_2 = new JButton("Prijavi se ");
 		btnNewButton_2.addActionListener(new ActionListener() {
+			
+
 			public void actionPerformed(ActionEvent e) {
-				String adress = tfAdress.getText();
-				String password = String.copyValueOf(pfPassword.getPassword());		
+				//String adress = tfAdress.getText();
+				//String password = String.copyValueOf(pfPassword.getPassword());		
+				
 				dispose();
-				FirstForm2 form2= new FirstForm2();
-				form2.setVisible(true);
-				
-				
+			   //panelSecond.setVisible(true);
+				form.setVisible(true);
+				form.setTextOnTextFile1("MIljan");
+				form.switchPanel(form.panelSecond);
+
 			}
+			
+		    
 		});
 		btnNewButton_2.setBounds(83, 306, 175, 35);
 		panel1.add(btnNewButton_2);
@@ -158,8 +174,8 @@ public class LoginRegisterForm extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				FirstForm2 form2 = new FirstForm2();
-				form2.setVisible(true);
+				dispose();
+				
 			}
 		});
 		brnRegistration.setBounds(63, 413, 191, 25);

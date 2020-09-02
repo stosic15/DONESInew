@@ -51,7 +51,7 @@ public class Connections {
 	}
 	public void startTransaction() {
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/avio_kompanija_grupa_a", "root","");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/donesi", "root","");
 			connection.setAutoCommit(false);
 			connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 		} catch (SQLException e) {
