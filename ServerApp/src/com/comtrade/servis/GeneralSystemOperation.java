@@ -1,6 +1,6 @@
 package com.comtrade.servis;
 
-import java.sql.Connection;
+import java.io.Serializable;
 
 import com.comtrade.connections.Connections;
 import com.comtrade.domen.TransferObject;

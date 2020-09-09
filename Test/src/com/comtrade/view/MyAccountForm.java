@@ -9,6 +9,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MyAccountForm extends JFrame {
 
@@ -77,8 +83,60 @@ public class MyAccountForm extends JFrame {
 		tfMobileNo.setBounds(419, 470, 190, 30);
 		contentPane.add(tfMobileNo);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Sa\u010Duvaj izmene");
 		btnNewButton.setBounds(419, 563, 189, 36);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("     donesi");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				dispose();
+				FirstForm form = new FirstForm();
+				form.setVisible(true);
+			}
+		});
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(12, 0, 249, 60);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton_1 = new JButton("Profil");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBounds(12, 61, 97, 25);
+		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_1_1 = new JButton("Li\u010Dni podaci");
+		btnNewButton_1_1.setBounds(121, 61, 101, 25);
+		contentPane.add(btnNewButton_1_1);
+		
+		JButton btnNewButton_1_2 = new JButton("Onlajn pla\u0107anja");
+		btnNewButton_1_2.setBounds(234, 61, 127, 25);
+		contentPane.add(btnNewButton_1_2);
+		
+		JButton btnNewButton_1_3 = new JButton("Narudzbine");
+		btnNewButton_1_3.setBounds(373, 61, 97, 25);
+		contentPane.add(btnNewButton_1_3);
+		
+		JButton btnNewButton_1_4 = new JButton("Adrese");
+		btnNewButton_1_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdressForm adress = new AdressForm();
+				adress.setVisible(true);
+			}
+		});
+		btnNewButton_1_4.setBounds(482, 61, 97, 25);
+		contentPane.add(btnNewButton_1_4);
+		
+		JButton btnNewButton_1_5 = new JButton("Omiljeni restorani ");
+		btnNewButton_1_5.setBounds(591, 61, 139, 25);
+		contentPane.add(btnNewButton_1_5);
+		
+		JButton btnNewButton_1_6 = new JButton("Utisci");
+		btnNewButton_1_6.setBounds(742, 61, 97, 25);
+		contentPane.add(btnNewButton_1_6);
 	}
 }

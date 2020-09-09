@@ -3,11 +3,12 @@ package com.comtrade.comunication;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 
 import com.comtrade.domen.TransferObject;
 
-public class Comunication {
+public class Comunication  {
 	private static Comunication instance;
 	private Socket socket;
 	
@@ -30,7 +31,9 @@ public class Comunication {
 		
 		try {
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+			System.out.println("ASDAD");
 			objectOutputStream.writeObject(transferObject);
+			System.out.println("asdads");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,10 +42,12 @@ public class Comunication {
 	}
 	public TransferObject read() throws IOException, ClassNotFoundException {
 		ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-		
+		System.out.println("asdad");
 		return(TransferObject) objectInputStream.readObject();
 		
+		
 	}
+	
 
 }
  

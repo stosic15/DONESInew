@@ -16,6 +16,7 @@ public class Broker {
 		try {
 			PreparedStatement preparedStatement = Connections.getInstance().getConnection().prepareStatement(sql);
 			generalDomen.setValuesINSERT(preparedStatement);
+			System.out.println("broker");
 			preparedStatement.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

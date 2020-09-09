@@ -1,8 +1,10 @@
 package com.comtrade.domen;
 
+import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeAdress implements GeneralDomen {
@@ -46,6 +48,7 @@ public class HomeAdress implements GeneralDomen {
 	public void setValuesINSERT(PreparedStatement preparedStatement) {
 		try {
 			preparedStatement.setString(1, adress);
+			System.out.println("insertovanje home");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,8 +57,17 @@ public class HomeAdress implements GeneralDomen {
 	}
 	@Override
 	public List<GeneralDomen> selectAll(ResultSet resultSet) {
-		// TODO Auto-generated method stub
-		return null;
+		List<GeneralDomen>adresses = new ArrayList<GeneralDomen>();
+		try {
+			while(resultSet.next()){
+				HomeAdress adress = new HomeAdress(resultSet.getString("adress"));
+				adresses.add(adress);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return adresses;
 	}
 	
 

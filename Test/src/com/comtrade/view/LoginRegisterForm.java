@@ -83,12 +83,12 @@ public class LoginRegisterForm extends JFrame {
 		tfAdress = new JTextField();
 		tfAdress.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				tfAdress.setText(null);
+			public void mouseEntered(MouseEvent e) {
+				tfAdress.setText("");
 			}
 		});
 		tfAdress.setText("  E-adresa ili korisni\u010Dko ime");
-		tfAdress.setBounds(24, 191, 253, 30);
+		tfAdress.setBounds(24, 190, 253, 30);
 		panel1.add(tfAdress);
 		tfAdress.setColumns(10);
 		

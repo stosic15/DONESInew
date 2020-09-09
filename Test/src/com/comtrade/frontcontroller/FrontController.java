@@ -1,6 +1,7 @@
 package com.comtrade.frontcontroller;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import com.comtrade.comunication.Comunication;
 import com.comtrade.domen.TransferObject;

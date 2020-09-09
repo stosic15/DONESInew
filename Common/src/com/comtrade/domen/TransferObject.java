@@ -1,6 +1,8 @@
 package com.comtrade.domen;
 
-public class TransferObject {
+import java.io.Serializable;
+
+public class TransferObject implements Serializable {
 	private Object request;
 	private Object response;
 	private ConstantesBL constantesBL;

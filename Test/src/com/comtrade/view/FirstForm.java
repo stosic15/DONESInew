@@ -26,6 +26,9 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FirstForm extends JFrame {
 
@@ -37,6 +40,7 @@ public class FirstForm extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private LoginRegisterForm form2;
+	private JLabel lblNewLabel_1;
 	/**
 	 * Launch the application.
 	 */
@@ -92,6 +96,8 @@ public class FirstForm extends JFrame {
 		panelFirst.setLayout(null);
 		
 		JTextPane txtpnOrderDeliveryIn = new JTextPane();
+		txtpnOrderDeliveryIn.setEnabled(false);
+		txtpnOrderDeliveryIn.setEditable(false);
 		txtpnOrderDeliveryIn.setText("Order delivery \r\n\r\nin less than 1 minute!");
 		txtpnOrderDeliveryIn.setForeground(Color.BLACK);
 		txtpnOrderDeliveryIn.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -99,9 +105,15 @@ public class FirstForm extends JFrame {
 		panelFirst.add(txtpnOrderDeliveryIn);
 		
 		textField = new JTextField();
+		textField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField.setText("");
+			}
+		});
 		textField.setText("Insert your adress");
 		textField.setColumns(10);
-		textField.setBounds(22, 261, 368, 50);
+		textField.setBounds(-29, 280, 368, 50);
 		panelFirst.add(textField);
 		
 		JButton btnOrder = new JButton("Naru\u010Dite");
@@ -111,9 +123,10 @@ public class FirstForm extends JFrame {
 				HomeAdress homeAdress = new HomeAdress();
 				homeAdress.setAdress(adress);
 				TransferObject tObject = TransferObject.create(homeAdress, ConstantesFC.HOME_ADRESS, ConstantesBL.POST);
-				
+				System.out.println();
 				try {
 					TransferObject tr1 = FrontController.getInstance().execute(tObject);
+					System.out.println();
 					String message1 = tr1.getMessage();
 					JOptionPane.showMessageDialog(null, message1);
 				} catch (ClassNotFoundException e1) {
@@ -132,18 +145,35 @@ public class FirstForm extends JFrame {
 		btnLoginRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//LoginRegisterForm loginRegister = new LoginRegisterForm();
-				//loginRegister.setVisible(true);
+			//	loginRegister.setVisible(true);
 				form2.setVisible(true);
 			}
 		});
 		btnLoginRegister.setBounds(545, 34, 171, 25);
 		panelFirst.add(btnLoginRegister);
 		
+		JLabel lblNewLabel = new JLabel("     donesi");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				dispose();
+				FirstForm form = new FirstForm();
+				form.setVisible(true);
+				
+			}
+		});
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setBounds(12, 13, 249, 77);
+		panelFirst.add(lblNewLabel);
+		
 		panelSecond = new JPanel();
 		layeredPane.add(panelSecond, "name_827590184905600");
 		panelSecond.setLayout(null);
 		
 		JTextPane txtpnOrderDeliveryIn_1 = new JTextPane();
+		txtpnOrderDeliveryIn_1.setEnabled(false);
+		txtpnOrderDeliveryIn_1.setEditable(false);
 		txtpnOrderDeliveryIn_1.setText("Order delivery \r\n\r\nin less than 1 minute!");
 		txtpnOrderDeliveryIn_1.setForeground(Color.BLACK);
 		txtpnOrderDeliveryIn_1.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -161,8 +191,26 @@ public class FirstForm extends JFrame {
 		panelSecond.add(btnOrder_1);
 		
 		 comboBox = new JComboBox();
-		comboBox.setBounds(613, 31, 89, 44);
+		 comboBox.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 	}
+		 });
+		comboBox.setBounds(552, 31, 150, 44);
 		panelSecond.add(comboBox);
+		
+		lblNewLabel_1 = new JLabel("     donesi");
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				dispose();
+				FirstForm form = new FirstForm();
+				form.setVisible(true);
+				
+			}
+		});
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(12, 13, 249, 77);
+		panelSecond.add(lblNewLabel_1);
 	}
-	
 }

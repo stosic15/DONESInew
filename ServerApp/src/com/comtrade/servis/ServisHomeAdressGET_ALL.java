@@ -5,20 +5,21 @@ import com.comtrade.domen.HomeAdress;
 import com.comtrade.domen.SqlException;
 import com.comtrade.domen.TransferObject;
 
-public class ServisHomeAdressInsert extends GeneralSystemOperation {
+public class ServisHomeAdressGET_ALL extends GeneralSystemOperation {
 
 	@Override
 	public void executeConcreteSystemOperation(TransferObject transferObject) {
-		HomeAdress hm = (HomeAdress) transferObject.getRequest();
-		Broker broker = new Broker();
+		Broker b = new Broker();
+		
 		try {
-			broker.insert(hm);
-			transferObject.setMessage("Insert successful");
+			transferObject.setResponse(b.selectAll(new HomeAdress()));
 		} catch (SqlException e) {
 			// TODO Auto-generated catch block
-			transferObject.setMessage(e.toString());
+			e.printStackTrace();
 		}
-
+		
 	}
+
+	
 
 }
