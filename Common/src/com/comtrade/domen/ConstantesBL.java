@@ -1,6 +1,6 @@
 package com.comtrade.domen;
 
 public enum ConstantesBL {
-	POST, 
+	POST, GET_ALL
 
 }

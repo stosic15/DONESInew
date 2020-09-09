@@ -31,17 +31,17 @@ package com.comtrade.domen;
 		@Override
 		public String getTableName() {
 			// TODO Auto-generated method stub
-			return null;
+			return " region ";
 		}
 		@Override
 		public String getCollumnName() {
 			// TODO Auto-generated method stub
-			return null;
+			return " (region_name) "  ;
 		}
 		@Override
 		public String getValues() {
 			// TODO Auto-generated method stub
-			return null;
+			return " (?) ";
 		}
 		@Override
 		public void setValuesINSERT(PreparedStatement preparedStatement) {
