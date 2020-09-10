@@ -114,6 +114,13 @@ public class MyAccountForm extends JFrame {
 		contentPane.add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("Onlajn pla\u0107anja");
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OnlinePayments oP = new OnlinePayments();
+				oP.setVisible(true);
+				
+			}
+		});
 		btnNewButton_1_2.setBounds(234, 61, 127, 25);
 		contentPane.add(btnNewButton_1_2);
 		

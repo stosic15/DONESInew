@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import com.comtrade.controllerBL.donesi.ControllerBLHomeAdress;
 import com.comtrade.domen.TransferObject;
 import com.comtraed.controllerBL.CommandBase;
 import com.sun.corba.se.spi.servicecontext.SendingContextServiceContext;
@@ -25,7 +26,7 @@ public class ClientThread extends Thread {
 				processTheData(transferObject);
 			} catch (IOException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			
 		}
 	}
@@ -35,7 +36,8 @@ public class ClientThread extends Thread {
 	private void processTheData(TransferObject transferObject) {
 		CommandBase commadBase = null;
 		switch (transferObject.getConstantesFC()) {
-		case HOME_ADRESS:			
+		case HOME_ADRESS:
+			commadBase = new ControllerBLHomeAdress();
 			break;
 		default:
 			break;

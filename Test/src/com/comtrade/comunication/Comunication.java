@@ -16,8 +16,7 @@ public class Comunication  {
 		 try {
 			socket = new Socket ("127.0.0.1",9000);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		
 		}
 	}
@@ -40,9 +39,9 @@ public class Comunication  {
 		}
 		
 	}
-	public TransferObject read() throws IOException, ClassNotFoundException {
+	public  TransferObject read() throws IOException, ClassNotFoundException {
 		ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-		System.out.println("asdad");
+		System.out.println("TU");
 		return(TransferObject) objectInputStream.readObject();
 		
 		

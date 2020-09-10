@@ -94,16 +94,12 @@ public class LoginRegisterForm extends JFrame {
 		
 		JButton btnNewButton_2 = new JButton("Prijavi se ");
 		btnNewButton_2.addActionListener(new ActionListener() {
-			
-
 			public void actionPerformed(ActionEvent e) {
 				//String adress = tfAdress.getText();
 				//String password = String.copyValueOf(pfPassword.getPassword());		
 				
 				dispose();
-			   //panelSecond.setVisible(true);
-				form.setVisible(true);
-				form.setTextOnTextFile1("MIljan");
+				form.setVisible(true);		
 				form.switchPanel(form.panelSecond);
 
 			}
@@ -175,6 +171,8 @@ public class LoginRegisterForm extends JFrame {
 					e1.printStackTrace();
 				}
 				dispose();
+				form.setVisible(true);		
+				form.switchPanel(form.panelSecond);
 				
 			}
 		});

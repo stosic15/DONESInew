@@ -40,6 +40,7 @@ public class FirstForm extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private LoginRegisterForm form2;
+	private OnlinePayments oP;
 	private JLabel lblNewLabel_1;
 	/**
 	 * Launch the application.
@@ -53,11 +54,22 @@ public class FirstForm extends JFrame {
 					frame.setForm(form2);
 					form2.setForm(frame);
 					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					FirstForm frame1 = new FirstForm();
+			        OnlinePayments oP = new OnlinePayments();
+				    frame1.setForm2(oP);
+				    oP.setForm2(frame1);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
 	}
 	public void switchPanel(JPanel panel) {
 		layeredPane.removeAll();
@@ -73,11 +85,11 @@ public class FirstForm extends JFrame {
 	{
 		form2 = f;
 	}
+	public void setForm2 (OnlinePayments f) {
+		oP = f;
+	}
 
-	/**
-	 * Create the frame.
-	 * @param panelSecond 
-	 */
+	
 	public FirstForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 437);
@@ -113,7 +125,7 @@ public class FirstForm extends JFrame {
 		});
 		textField.setText("Insert your adress");
 		textField.setColumns(10);
-		textField.setBounds(-29, 280, 368, 50);
+		textField.setBounds(22, 261, 368, 50);
 		panelFirst.add(textField);
 		
 		JButton btnOrder = new JButton("Naru\u010Dite");
@@ -123,10 +135,10 @@ public class FirstForm extends JFrame {
 				HomeAdress homeAdress = new HomeAdress();
 				homeAdress.setAdress(adress);
 				TransferObject tObject = TransferObject.create(homeAdress, ConstantesFC.HOME_ADRESS, ConstantesBL.POST);
-				System.out.println();
+				System.out.println("sdsdfsdfsdf");
 				try {
 					TransferObject tr1 = FrontController.getInstance().execute(tObject);
-					System.out.println();
+					System.out.println("sfsdf");
 					String message1 = tr1.getMessage();
 					JOptionPane.showMessageDialog(null, message1);
 				} catch (ClassNotFoundException e1) {

@@ -20,25 +20,25 @@ public abstract class GeneralSystemOperation {
 		
 	}
 
-	private void closeTransaction() {
+	public void closeTransaction() {
 		Connections.getInstance().closeConnection();
 		
 	}
 
-	private void undoTransaction() {
+	public void undoTransaction() {
 		Connections.getInstance().undoTransaction();
 		
 	}
 
-	private void confirmTansaction() {
+	public void confirmTansaction() {
 		// TODO Auto-generated method stub
 		Connections.getInstance().confirmTansaction();
 		
 	}
 
-	protected abstract void executeConcreteSystemOperation(TransferObject transferObject);
+	public abstract void executeConcreteSystemOperation(TransferObject transferObject);
 
-	private void startTransaction() {
+	public void startTransaction() {
 		Connections.getInstance().startTransaction();
 		
 	}

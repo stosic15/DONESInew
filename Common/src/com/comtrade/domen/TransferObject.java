@@ -38,7 +38,7 @@ public class TransferObject implements Serializable {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public static TransferObject create(Object request, ConstantesFC constantesFC, ConstantesBL constantesBL) {
+	public static  TransferObject create(Object request, ConstantesFC constantesFC, ConstantesBL constantesBL) {
 		TransferObject transferObject = new TransferObject();
 		transferObject.setRequest(request);
 		transferObject.setConstantesFC(constantesFC);
