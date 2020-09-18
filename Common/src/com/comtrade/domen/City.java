@@ -7,43 +7,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class City implements GeneralDomen {
-	private int id_city;
-	private String city_name;
+	private int id;
+	private String name;
 	public City() {
 		super();
 	}
-	public City(String city_name) {
-		super(); 
-		this.city_name = city_name;
-	}
-	public int getId_city() {
-		return id_city;
-	}
-	public void setId_city(int id_city) {
-		this.id_city = id_city;
-	}
-	public String getCity_name() {
-		return city_name;
-	}
-	public void setCity_name(String city_name) {
-		this.city_name = city_name;
-	
-	}
-	@Override
-	public String getTableName() {
-		// TODO Auto-generated method stub
-		return "city";
-	
 		
+    int getId() {
+		return id;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public List<GeneralDomen> selectAll(ResultSet resultSet) {
 		List<GeneralDomen >citys = new ArrayList<GeneralDomen>();
 		try {
 			while(resultSet.next()) {
 			City city = new City();
-			city.setId_city(resultSet.getInt("id_city"));
-			city.setCity_name(resultSet.getString("city_name"));
+			city.setId(resultSet.getInt("id_city"));
+			city.setName(resultSet.getString("city_name"));
 			
 			}
 		} catch (SQLException e) {
@@ -65,6 +58,42 @@ public class City implements GeneralDomen {
 	}
 	@Override
 	public void setValuesINSERT(PreparedStatement preparedStatement) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<GeneralDomen> selectDistinct(ResultSet resultSet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getDistinctValues() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String setUpdate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String returnId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setUpdate(PreparedStatement preparedStatement) {
 		// TODO Auto-generated method stub
 		
 	}

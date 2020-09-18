@@ -17,4 +17,15 @@ public interface GeneralDomen extends Serializable{
 
 	List<GeneralDomen> selectAll(ResultSet resultSet);
 
+	List<GeneralDomen> selectDistinct(ResultSet resultSet);
+
+	String getDistinctValues();
+
+	String setUpdate();
+
+	String returnId();
+
+	void setUpdate(PreparedStatement preparedStatement);
+
+	
 }

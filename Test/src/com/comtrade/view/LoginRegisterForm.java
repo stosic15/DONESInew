@@ -35,17 +35,16 @@ public class LoginRegisterForm extends JFrame {
 	private JPanel contentPane;
 	private JPanel panel1;
 	private JPanel panel2;
-	//private JPanel panelFirst;
 	public JPanel panelSecond;
 	private JLayeredPane layeredPane;
 	private JTextField tfAdress;
 	private JTextField tfEmail;
-	private JTextField tfPassword;
 	private JTextField tfUserName;
-	private JPasswordField pfPassword;
-	private FirstForm form;
+	private FirstForm fristForm;
+	private JTextField tfPass;
+	private JTextField tfPassword;
 	
-	
+	private User loginUser;
 
 	
 	
@@ -55,9 +54,9 @@ public class LoginRegisterForm extends JFrame {
 		layeredPane.repaint();
 		layeredPane.revalidate();
 	}
-	public void setForm(FirstForm f)
+	public void setForm(FirstForm f) 
 	{
-		form = f;
+		fristForm = f;
 	}
 
 	/**
@@ -83,7 +82,7 @@ public class LoginRegisterForm extends JFrame {
 		tfAdress = new JTextField();
 		tfAdress.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				tfAdress.setText("");
 			}
 		});
@@ -95,12 +94,33 @@ public class LoginRegisterForm extends JFrame {
 		JButton btnNewButton_2 = new JButton("Prijavi se ");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//String adress = tfAdress.getText();
-				//String password = String.copyValueOf(pfPassword.getPassword());		
+				String username = tfAdress.getText();
+				String password = tfPassword.getText();
+				User u = new User(username,password,"");
+		     	TransferObject tObject = TransferObject.create(u, ConstantesFC.USER, ConstantesBL.SELECT_DISTINCT);
 				
-				dispose();
-				form.setVisible(true);		
-				form.switchPanel(form.panelSecond);
+				try {
+					TransferObject tr1 = FrontController.getInstance().execute(tObject);
+					if(tr1.equals(u)){
+						//vrati mi usera za taj username i pw
+						//loginUser = vraceniUserIzBaze;
+						dispose();
+						fristForm.setVisible(true);		
+						fristForm.switchPanel(fristForm.panelSecond);
+					};
+					//Logoovan si i odes na drugu formu
+					
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				
+				
 
 			}
 			
@@ -109,9 +129,10 @@ public class LoginRegisterForm extends JFrame {
 		btnNewButton_2.setBounds(83, 306, 175, 35);
 		panel1.add(btnNewButton_2);
 		
-		pfPassword = new JPasswordField();
-		pfPassword.setBounds(24, 248, 253, 31);
-		panel1.add(pfPassword);
+		tfPassword = new JTextField();
+		tfPassword.setBounds(24, 233, 253, 22);
+		panel1.add(tfPassword);
+		tfPassword.setColumns(10);
 		
 		panel2 = new JPanel();
 		layeredPane.add(panel2, "name_85506011147400");
@@ -129,18 +150,6 @@ public class LoginRegisterForm extends JFrame {
 		tfEmail.setBounds(26, 100, 253, 30);
 		panel2.add(tfEmail);
 		
-		tfPassword = new JTextField();
-		tfPassword.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				tfPassword.setText(null);
-			}
-		});
-		tfPassword.setText("  Va\u0161a lozinka");
-		tfPassword.setColumns(10);
-		tfPassword.setBounds(26, 187, 253, 30);
-		panel2.add(tfPassword);
-		
 		tfUserName = new JTextField();
 		tfUserName.addMouseListener(new MouseAdapter() {
 			@Override
@@ -157,27 +166,35 @@ public class LoginRegisterForm extends JFrame {
 		brnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String email = tfEmail.getText();
-				String password = tfPassword.getText();
+				String password = tfPass.getText();
 				String userName = tfUserName.getText();
-				User user = new User();
-				TransferObject object = TransferObject.create(user, ConstantesFC.USER_REGISTRATION, ConstantesBL.POST);
-				
+				TransferObject object = TransferObject.create(new User(email,password,userName), ConstantesFC.USER , ConstantesBL.POST);
 				try {
-					TransferObject tO= FrontController.getInstance().execute(object);
-					String message = tO.getMessage();
-					JOptionPane.showMessageDialog(null, message);
+					TransferObject tO= FrontController.getInstance().execute(object);	
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				dispose();
-				form.setVisible(true);		
-				form.switchPanel(form.panelSecond);
+				fristForm.setVisible(true);		
+				fristForm.switchPanel(fristForm.panelSecond);
 				
 			}
 		});
 		brnRegistration.setBounds(63, 413, 191, 25);
 		panel2.add(brnRegistration);
+		
+		tfPass = new JTextField();
+		tfPass.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tfPass.setText(null);
+			}
+		});
+		tfPass.setText("Va\u0161a lozinka");
+		tfPass.setBounds(26, 221, 253, 22);
+		panel2.add(tfPass);
+		tfPass.setColumns(10);
 		
 		JButton btnLogovanje = new JButton("Uloguj se");
 		btnLogovanje.addActionListener(new ActionListener() {

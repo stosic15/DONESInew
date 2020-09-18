@@ -21,6 +21,7 @@ public class ThreadServer extends Thread{
 			while(true) {
 				Socket socket = serverSocket.accept();
 				ClientThread  clientThread = new ClientThread(socket);
+				executorService.execute(clientThread);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

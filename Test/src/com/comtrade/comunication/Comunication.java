@@ -30,9 +30,7 @@ public class Comunication  {
 		
 		try {
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-			System.out.println("ASDAD");
 			objectOutputStream.writeObject(transferObject);
-			System.out.println("asdads");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,8 +39,9 @@ public class Comunication  {
 	}
 	public  TransferObject read() throws IOException, ClassNotFoundException {
 		ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-		System.out.println("TU");
 		return(TransferObject) objectInputStream.readObject();
+		
+		
 		
 		
 	}

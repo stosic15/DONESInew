@@ -63,6 +63,31 @@ public class Restaurant implements GeneralDomen{
 		}
 		return restaurants;
 	}
+	@Override
+	public List<GeneralDomen> selectDistinct(ResultSet resultSet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getDistinctValues() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String setUpdate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String returnId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setUpdate(PreparedStatement preparedStatement) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

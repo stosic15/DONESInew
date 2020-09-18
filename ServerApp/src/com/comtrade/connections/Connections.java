@@ -49,8 +49,9 @@ public class Connections {
 			e.printStackTrace();
 		}
 	}
-	public void startTransaction() {
+	public void startTransaction() throws ClassNotFoundException {
 		try {
+		//	Class.forName("com.msql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/donesi", "root","");
 			connection.setAutoCommit(false);
 			connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);

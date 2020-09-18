@@ -3,14 +3,20 @@ package com.comtrade.domen;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class User implements GeneralDomen{
+	/**
+	 * 
+	 */
+	
 	private int id_user;
 	private String email;
 	private String password;
 	private String user_name;
+	private String name;
+	private String last_name;
+	private String mobile_number;
 	public User() {
 		super();
 	}
@@ -19,6 +25,35 @@ public class User implements GeneralDomen{
 		this.email = email;
 		this.password = password;
 		this.user_name = user_name;
+		
+		
+	}
+	public User(String email, String user_name, String name, String last_name, String mobile_number) {
+		super();
+		this.email = email;
+		this.user_name = user_name;
+		this.name = name;
+		this.last_name = last_name;
+		this.mobile_number = mobile_number;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getLastName() {
+		return last_name;
+	}
+	public void setLastName(String last_name) {
+		this.last_name = last_name;
+	}
+	public String getMobile_number() {
+		return mobile_number;
+	}
+	public void setobile_number(String mobile_number) {
+		this.mobile_number = mobile_number;
 	}
 	public int getId_user() {
 		return id_user;
@@ -54,19 +89,22 @@ public class User implements GeneralDomen{
 	@Override
 	public String getCollumnName() {
 		// TODO Auto-generated method stub
-		return null;
+		return " ( email , password , user_name ,mobile_number,name, last_name  ) ";
 	}
 	@Override
 	public String getValues() {
 		// TODO Auto-generated method stub
-		return null;
+		return "(?, ?, ?,?,?,?)";
 	}
 	@Override
 	public void setValuesINSERT(PreparedStatement preparedStatement) {
 		try {
-			preparedStatement.setString(1, "email");
-			preparedStatement.setString(2, "password");
+			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, password);
 			preparedStatement.setString(3, user_name);
+			preparedStatement.setString(4, "");
+			preparedStatement.setString(5, "");
+			preparedStatement.setString(6, "");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,20 +114,47 @@ public class User implements GeneralDomen{
 	}
 	@Override
 	public List<GeneralDomen> selectAll(ResultSet resultSet) {
-		List<GeneralDomen>list = new ArrayList<GeneralDomen>();
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<GeneralDomen> selectDistinct(ResultSet resultSet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getDistinctValues() {
+		return null;
+		
+		
+	}
+	@Override
+	public String setUpdate() {
+		return  " user_name = " +user_name+ ", mobile_number = " +mobile_number+ ", name =" +name+ ", last_name = " +last_name;
+	}
+	@Override
+	public String returnId() {
+		// TODO Auto-generated method stub
+		return "id_user";
+	}
+	@Override
+	public void setUpdate(PreparedStatement preparedStatement) {
 		try {
-			while(resultSet.next()) {
-				User user = new User();
-				user.setEmail(resultSet.getString("email"));
-				user.setPassword(resultSet.getString("password"));
-				user.setUser_name(resultSet.getString("user_name"));
-			}
+			 
+			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, password );
+			preparedStatement.setString(3, user_name);
+			preparedStatement.setString(4, mobile_number);
+			preparedStatement.setString(5, name);
+			preparedStatement.setString(6, last_name);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		
 	}
+	
+	
 	
 	
 

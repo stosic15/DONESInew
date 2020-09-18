@@ -38,7 +38,7 @@ public abstract class GeneralSystemOperation {
 
 	public abstract void executeConcreteSystemOperation(TransferObject transferObject);
 
-	public void startTransaction() {
+	public void startTransaction() throws ClassNotFoundException {
 		Connections.getInstance().startTransaction();
 		
 	}

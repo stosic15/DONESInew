@@ -48,7 +48,7 @@ public class HomeAdress implements GeneralDomen {
 	public void setValuesINSERT(PreparedStatement preparedStatement) {
 		try {
 			preparedStatement.setString(1, adress);
-			System.out.println("insertovanje home");
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,6 +68,31 @@ public class HomeAdress implements GeneralDomen {
 			e.printStackTrace();
 		}
 		return adresses;
+	}
+	@Override
+	public List<GeneralDomen> selectDistinct(ResultSet resultSet) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getDistinctValues() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String setUpdate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String returnId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setUpdate(PreparedStatement preparedStatement) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
