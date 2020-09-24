@@ -45,9 +45,14 @@ public class FirstForm extends JFrame {
 	private LoginRegisterForm form2;
 	private JLabel lblNewLabel_1;
 	private MyAccountForm myAcc;
-	private JPanel panel_7;
 	private User loginUser;
-	
+	private JButton btnNewButton;
+	public void setUser(User u)
+	{
+		loginUser = u;
+		btnNewButton.setText(loginUser.getName()+ "\n" +loginUser.getLastName());
+		
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -97,7 +102,7 @@ public class FirstForm extends JFrame {
 		contentPane.setLayout(null);
 		
 		layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 0, 752, 377);
+		layeredPane.setBounds(0, 0, 752, 512);
 		contentPane.add(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
@@ -142,6 +147,7 @@ public class FirstForm extends JFrame {
 				}
 				dispose();
 				FoodForm foodFoorm = new FoodForm();
+				foodFoorm.setVisible(true);
 			}
 			
 		});
@@ -191,7 +197,11 @@ public class FirstForm extends JFrame {
 		textField_1.setBounds(29, 254, 368, 50);
 		panelSecond.add(textField_1);
 		
-		JButton btnOrder_1 = new JButton("Order");
+		JButton btnOrder_1 = new JButton("Naru\u010Dite");
+		btnOrder_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnOrder_1.setBounds(395, 254, 89, 50);
 		panelSecond.add(btnOrder_1);
 		
@@ -207,59 +217,106 @@ public class FirstForm extends JFrame {
 		});
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(12, 13, 249, 77);
+		lblNewLabel_1.setBounds(12, 13, 121, 62);
 		panelSecond.add(lblNewLabel_1);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(624, 45, 116, 32);
+		panel.setBounds(624, 61, 128, 1);
 		panelSecond.add(panel);
-		panel.setLayout(null);
 		
 		JButton btnNewButton_1 = new JButton("Moj nalog");
+		btnNewButton_1.setBounds(0, 27, 127, 34);
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				myAcc.setVisible(true);		
+				myAcc.setVisible(true);
+				
+		
 				
 				
 			}
 		});
-		btnNewButton_1.setBounds(0, 38, 116, 34);
+		panel.setLayout(null);
 		panel.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(0, 76, 116, 34);
+		JButton btnNewButton_2 = new JButton("Moje narudzbine");
+		btnNewButton_2.setBounds(0, 66, 127, 34);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				myAcc.setVisible(true);
+				myAcc.switchPanel(myAcc.panel_3);
+			}
+		});
 		panel.add(btnNewButton_2);
 		
-		JButton btnNewButton_1_1 = new JButton("New button");
-		btnNewButton_1_1.setBounds(0, 114, 116, 34);
+		JButton btnNewButton_1_1 = new JButton("Online pla\u0107anja");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				myAcc.setVisible(true);
+				myAcc.switchPanel(myAcc.panel_2); 
+			}
+		});
+		btnNewButton_1_1.setBounds(0, 103, 127, 34);
 		panel.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_3 = new JButton("New button");
-		btnNewButton_3.setBounds(0, 150, 116, 34);
+		JButton btnNewButton_3 = new JButton("Moje adrese");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				myAcc.setVisible(true);
+				myAcc.switchPanel(myAcc.panel_4);
+			}
+		});
+		btnNewButton_3.setBounds(0, 143, 127, 34);
 		panel.add(btnNewButton_3);
 		
-		JButton btnNewButton_1_2 = new JButton("New button");
-		btnNewButton_1_2.setBounds(0, 186, 116, 34);
+		JButton btnNewButton_1_2 = new JButton("Omiljeni objekti");
+		btnNewButton_1_2.setBounds(0, 220, 127, 34);
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				myAcc.setVisible(true);
+				myAcc.switchPanel(myAcc.panel_5);
+			}
+		});
 		panel.add(btnNewButton_1_2);
 		
-		JButton btnNewButton_1_2_1 = new JButton("New button");
-		btnNewButton_1_2_1.setBounds(0, 244, 116, 34);
+		JButton btnNewButton_1_2_1 = new JButton("Moji utisci");
+		btnNewButton_1_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				myAcc.setVisible(true);
+				myAcc.switchPanel(myAcc.panel_6);
+			}
+		});
+		btnNewButton_1_2_1.setBounds(0, 182, 127, 34);
 		panel.add(btnNewButton_1_2_1);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton_1_2_2 = new JButton("Izloguj se");
+		btnNewButton_1_2_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FirstForm firstForm = new FirstForm();
+				firstForm.setVisible(true);
+				switchPanel(panelFirst);
+			}
+		});
+		btnNewButton_1_2_2.setBounds(0, 285, 127, 34);
+		panel.add(btnNewButton_1_2_2);
+		
+		btnNewButton = new JButton();
+		
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				panel.setSize(160,300);
+				panel.setSize(160,330);
+				
 			}
 		});
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBounds(624, 0, 97, 47);
+		
+		btnNewButton.setBounds(624, 13, 97, 47);
 		panelSecond.add(btnNewButton);
 		
 		

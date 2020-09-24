@@ -38,8 +38,8 @@ public class LoginRegisterForm extends JFrame {
 	public JPanel panelSecond;
 	private JLayeredPane layeredPane;
 	private JTextField tfAdress;
-	private JTextField tfEmail;
-	private JTextField tfUserName;
+	public  JTextField tfEmail;
+	public JTextField tfUserName;
 	private FirstForm fristForm;
 	private JTextField tfPass;
 	private JTextField tfPassword;
@@ -62,6 +62,10 @@ public class LoginRegisterForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	public void setUser(User u)
+	{
+		loginUser = u;
+	}
 	public LoginRegisterForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 622);
@@ -96,18 +100,22 @@ public class LoginRegisterForm extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String username = tfAdress.getText();
 				String password = tfPassword.getText();
-				User u = new User(username,password,"");
+				User u = new User(username,password,username);
 		     	TransferObject tObject = TransferObject.create(u, ConstantesFC.USER, ConstantesBL.SELECT_DISTINCT);
 				
 				try {
 					TransferObject tr1 = FrontController.getInstance().execute(tObject);
-					if(tr1.equals(u)){
-						//vrati mi usera za taj username i pw
-						//loginUser = vraceniUserIzBaze;
+					
+						User login = (User) tr1.getResponse();
+						if( login != null)
+						{
+							
+							fristForm.setUser(login);
 						dispose();
 						fristForm.setVisible(true);		
 						fristForm.switchPanel(fristForm.panelSecond);
-					};
+						}
+					;
 					//Logoovan si i odes na drugu formu
 					
 				} catch (ClassNotFoundException e1) {

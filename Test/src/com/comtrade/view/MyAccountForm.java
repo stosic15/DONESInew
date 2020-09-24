@@ -30,16 +30,16 @@ public class MyAccountForm extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfName;
 	private JTextField tfUserName;
-	private JTextField tfEmail;
+	private JTextField tfEmaill;
 	private JTextField tfMobileNo;
 	private JTextField tfLastName;
-	private JPanel panel_7;
-	private JPanel panel_1;
-	private JPanel panel_2;
-	private JPanel panel_3;
-	private JPanel panel_4;
-	private JPanel panel_5;
-	private JPanel panel_6;
+	public JPanel panel_7;
+	public JPanel panel_1;
+	public JPanel panel_2;
+	public JPanel panel_3;
+	public JPanel panel_4;
+	public JPanel panel_5;
+	public JPanel panel_6;
 	private JLayeredPane layeredPane;
 	private FirstForm firstFrom;
 	public JPanel panelSecond;
@@ -68,7 +68,7 @@ public class MyAccountForm extends JFrame {
 	{
 		firstFrom = f;
 	}
-	public void switchPanel2(JPanel panel) {
+	public void switchPanel(JPanel panel) {
 		layeredPane.removeAll();
 		layeredPane.add(panel);
 		layeredPane.repaint();
@@ -89,7 +89,7 @@ public class MyAccountForm extends JFrame {
 		JButton btnNewButton_1 = new JButton("Profil");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanel2(panel_7);
+				switchPanel(panel_7);
 			}
 		});
 		btnNewButton_1.setBounds(22, 84, 73, 25);
@@ -98,7 +98,7 @@ public class MyAccountForm extends JFrame {
 		JButton btnNewButton_1_1 = new JButton("Li\u010Dni podaci");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanel2(panel_1);
+				switchPanel(panel_1);
 			}
 		});
 		btnNewButton_1_1.setBounds(122, 84, 121, 25);
@@ -107,25 +107,25 @@ public class MyAccountForm extends JFrame {
 		JButton btnNewButton_1_2 = new JButton("Onlajn pla\u0107anja");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanel2(panel_2);
+				switchPanel(panel_2);
 			}
 		});
-		btnNewButton_1_2.setBounds(261, 84, 121, 25);
+		btnNewButton_1_2.setBounds(371, 84, 121, 25);
 		contentPane.add(btnNewButton_1_2);
 		
 		JButton btnNewButton_1_3 = new JButton("Narudzbine");
 		btnNewButton_1_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanel2(panel_3);
+				switchPanel(panel_3);
 			}
 		});
-		btnNewButton_1_3.setBounds(394, 84, 97, 25);
+		btnNewButton_1_3.setBounds(262, 84, 97, 25);
 		contentPane.add(btnNewButton_1_3);
 		
 		JButton btnNewButton_1_4 = new JButton("Adrese");
 		btnNewButton_1_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanel2(panel_4);
+				switchPanel(panel_4);
 			}
 		});
 		btnNewButton_1_4.setBounds(503, 84, 73, 25);
@@ -134,7 +134,7 @@ public class MyAccountForm extends JFrame {
 		JButton btnNewButton_1_5 = new JButton("Omiljeni restorani ");
 		btnNewButton_1_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanel2(panel_5);
+				switchPanel(panel_5);
 			}
 		});
 		btnNewButton_1_5.setBounds(601, 84, 139, 25);
@@ -143,7 +143,7 @@ public class MyAccountForm extends JFrame {
 		JButton btnNewButton_1_6 = new JButton("Utisci");
 		btnNewButton_1_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanel2(panel_6);
+				switchPanel(panel_6);
 			}
 		});
 		btnNewButton_1_6.setBounds(771, 84, 63, 25);
@@ -178,6 +178,13 @@ public class MyAccountForm extends JFrame {
 		panel_7.add(lblUserName);
 		
 		tfUserName = new JTextField();
+		tfUserName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				
+				
+			}
+		});
 		tfUserName.setColumns(10);
 		tfUserName.setBounds(374, 180, 190, 30);
 		panel_7.add(tfUserName);
@@ -186,10 +193,10 @@ public class MyAccountForm extends JFrame {
 		lblEmail.setBounds(374, 239, 109, 23);
 		panel_7.add(lblEmail);
 		
-		tfEmail = new JTextField();
-		tfEmail.setColumns(10);
-		tfEmail.setBounds(374, 285, 190, 30);
-		panel_7.add(tfEmail);
+		tfEmaill = new JTextField();
+		tfEmaill.setColumns(10);
+		tfEmaill.setBounds(374, 285, 190, 30);
+		panel_7.add(tfEmaill);
 		
 		JLabel lblMobileNumber = new JLabel("Mobile number");
 		lblMobileNumber.setBounds(374, 351, 109, 23);
@@ -206,9 +213,9 @@ public class MyAccountForm extends JFrame {
 				String name  = tfName.getText();
 				String lastName = tfLastName.getText();
 				String userName = tfUserName.getText();
-				String email = tfEmail.getText();
+				String emaill = tfEmaill.getText();
 				String mobileNo = tfMobileNo.getText();
-				TransferObject object = TransferObject.create(new User(email,userName,name,lastName,mobileNo), ConstantesFC.USER , ConstantesBL.PUT);
+				TransferObject object = TransferObject.create(new User(emaill,userName,name,lastName,mobileNo), ConstantesFC.USER , ConstantesBL.PUT);
 				try {
 					TransferObject tO= FrontController.getInstance().execute(object);	
 				} catch (ClassNotFoundException | IOException e1) {
